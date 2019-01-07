@@ -52,7 +52,7 @@ openvas-pkg:
 
 openvas_reload_systemd:
   module.run:
-    - name: service.systemctl_reload
+    - service.systemctl_reload:
         - onchanges:
           - file: /lib/systemd/system/{{ map.openvas_manager.service }}.service
           - file: /lib/systemd/system/{{ map.openvas_scanner.service }}.service
