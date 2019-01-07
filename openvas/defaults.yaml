@@ -21,3 +21,4 @@ openvas_gsa:
   service: 'openvas-gsa'
   address: '127.0.0.1'
   port: 9392
+  host: localhost
