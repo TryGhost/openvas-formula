@@ -6,7 +6,7 @@ Wants=openvas-scanner.service
 [Service]
 Type=forking
 PIDFile=/var/run/openvasmd.pid
-ExecStart=/usr/sbin/openvasmd --foreground --listen=127.0.0.1 --port=9390 --database=/var/lib/openvas/mgr/tasks.db
+ExecStart=/usr/sbin/openvasmd --listen=127.0.0.1 --port=9390 --database=/var/lib/openvas/mgr/tasks.db
 ExecReload=/bin/kill -HUP $MAINPID
 # Kill the main process with SIGTERM and after TimeoutStopSec (defaults to
 # 1m30) kill remaining processes with SIGKILL
