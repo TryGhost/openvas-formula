@@ -1,2 +1,2 @@
 ExecStart=
-ExecStart=/usr/sbin/openvassd --listen={{ openvas_scanner.address }} --port={{ openvas_scanner.port }}
+ExecStart=/usr/sbin/openvassd --foreground
