@@ -10,9 +10,9 @@ if (openssl verify -CAfile /var/lib/openvas/CA/cacert.pem \
     /var/lib/openvas/CA/servercert.pem |grep -q ^error); then
     openvas-mkcert -q -f
 fi
-openvas-nvt-sync
-openvas-scapdata-sync
-openvas-certdata-sync
+greenbone-nvt-sync
+greenbone-scapdata-sync
+greenbone-certdata-sync
 if ! test -e /var/lib/openvas/CA/clientcert.pem || \
     ! test -e /var/lib/openvas/private/CA/clientkey.pem; then
     openvas-mkcert-client -n -i
@@ -22,8 +22,9 @@ if (openssl verify -CAfile /var/lib/openvas/CA/cacert.pem \
     openvas-mkcert-client -n -i
 fi
 
-service openvas-manager stop 
-service openvas-scanner stop 
+service openvas-manager stop
+service openvas-scanner stop
+service openvas-gsa stop
 
 openvassd
 openvasmd --migrate
@@ -34,7 +35,7 @@ sleep 5
 
 service openvas-scanner start
 service openvas-manager start
-service greenbone-security-assistant restart
+service openvas-gsa start 
 
 if ! openvasmd --get-users | grep -q ^admin$ ; then
     openvasmd --create-user=admin
