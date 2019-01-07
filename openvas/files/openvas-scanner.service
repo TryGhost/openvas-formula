@@ -8,7 +8,7 @@ Requires=redis-server.service
 WantedBy=multi-user.target
 
 [Service]
-Type=forking
+Type=simple
 PIDFile=/var/run/openvassd.pid
 ExecStart=/usr/sbin/openvassd --foreground
 ExecReload=/bin/kill -HUP $MAINPID
