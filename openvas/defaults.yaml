@@ -1,23 +1,23 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 openvas:
-  pkg: 'openvas'
-  
+  pkg: 'openvas9'
+
 openvas_manager:
-  pkg: 'openvas-manager'
+  pkg: 'openvas9-manager'
   service: 'openvas-manager'
   address: '127.0.0.1'
   port: 9390
   database: '/var/lib/openvas/mgr/tasks.db'
 
 openvas_scanner:
-  pkg: 'openvas-scanner'
+  pkg: 'openvas9-scanner'
   service: 'openvas-scanner'
   address: '127.0.0.1'
   port: 9391
 
 openvas_gsa:
-  pkg: 'openvas-gsa'
+  pkg: 'openvas9-gsa'
   service: 'openvas-gsa'
   address: '127.0.0.1'
   port: 9392

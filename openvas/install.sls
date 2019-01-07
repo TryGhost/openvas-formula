@@ -15,7 +15,7 @@ openvas-pkg:
 {% endif %}
 
   pkg.installed:
-    - pkgs: 
+    - pkgs:
       - {{ map.openvas.pkg }}
       - {{ map.openvas_manager.pkg }}
       - {{ map.openvas_scanner.pkg }}
@@ -26,7 +26,7 @@ openvas-pkg:
 /lib/systemd/system/{{ map.openvas_manager.service }}.service:
   file.managed:
     - source: salt://openvas/files/openvas-manager.service
-    - require: 
+    - require:
       - pkg: openvas-pkg
 
 /etc/init.d/{{ map.openvas_manager.service }}:
@@ -49,4 +49,12 @@ openvas-pkg:
 
 /etc/init.d/{{ map.openvas_gsa.service }}:
   file.absent
+
+openvas_reload_systemd:
+  module.run:
+    - name: service.systemctl_reload
+    - onchanges:
+      - file: /lib/systemd/system/{{ map.openvas_manager.service }}.service
+      - file: /lib/systemd/system/{{ map.openvas_scanner.service }}.service
+      - file: /lib/systemd/system/{{ map.openvas_gsa.service }}.service
 {% endif %}
